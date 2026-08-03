@@ -1,169 +1,725 @@
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { getCareerAdvice } from "../../services/geminiService";
-import "./RecommendationDetails.css";
+import { getJobById } from "../../services/jobService";
+
 
 function RecommendationDetails() {
 
+
     const { state } = useLocation();
 
+
+    const [job, setJob] = useState(null);
+
     const [advice, setAdvice] = useState(null);
+
     const [loading, setLoading] = useState(false);
 
-    if (!state) {
-        return <h2>Recommendation not found.</h2>;
-    }
 
-    const generateAdvice = async () => {
 
-        setLoading(true);
+    useEffect(() => {
 
-        try {
+        if (state?.jobId) {
 
-            const response = await getCareerAdvice({
-
-                matchedSkills: state.matchedSkills,
-
-                missingSkills: state.missingSkills,
-
-            });
-
-            setAdvice(response);
-
-        } catch (error) {
-
-            console.error(error);
+            fetchJob();
 
         }
 
-        setLoading(false);
+    }, [state]);
+
+
+
+
+    const fetchJob = async () => {
+
+        try {
+
+
+            const response = await getJobById(state.jobId);
+
+
+            setJob(response);
+
+
+        }
+        catch(error){
+
+            console.error(
+                "Failed to fetch job details",
+                error
+            );
+
+        }
+
     };
 
-    return (
 
-        <div className="details-page">
 
-            <div className="details-card">
 
-                <h1>{state.jobTitle}</h1>
 
-                <h3>{state.company}</h3>
-                <div className="job-description">
+    if(!state){
 
-                    <h3>Job Description</h3>
+        return (
 
-                    <p>{state.jobDescription}</p>
+            <div className="details-page">
 
-                </div>
-
-                <div className="score-box">
-
-                    <h2>Match Score</h2>
-
-                    <p>{state.matchPercentage}%</p>
-
-                </div>
-
-                <div className="skills-section">
-
-                    <div>
-
-                        <h3>Matched Skills</h3>
-
-                        <ul>
-
-                            {(state.matchedSkills || []).map((skill, index) => (
-
-                                <li key={index}>
-                                    ✅ {skill}
-                                </li>
-
-                            ))}
-
-                        </ul>
-
-                    </div>
-
-                    <div>
-
-                        <h3>Missing Skills</h3>
-
-                        <ul>
-
-                            {(state.missingSkills || []).map((skill, index) => (
-
-                                <li key={index}>
-                                    ❌ {skill}
-                                </li>
-
-                            ))}
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-                <button
-                    className="ai-btn"
-                    onClick={generateAdvice}
-                >
-                    {loading ? "Generating..." : "AI Suggestion"}
-                </button>
-
-                {advice && (
-
-                    <div className="ai-section">
-
-                        <h2>Career Summary</h2>
-
-                        <p>{advice.careerSummary}</p>
-
-                        <h2>Learning Roadmap</h2>
-
-                        <ul>
-
-                            {advice.learningRoadmap.map((item, index) => (
-
-                                <li key={index}>{item}</li>
-
-                            ))}
-
-                        </ul>
-
-                        <h2>Interview Preparation</h2>
-
-                        <ul>
-
-                            {advice.interviewPreparation.map((item, index) => (
-
-                                <li key={index}>{item}</li>
-
-                            ))}
-
-                        </ul>
-
-                        <h2>Resume Improvements</h2>
-
-                        <ul>
-
-                            {advice.resumeImprovements.map((item, index) => (
-
-                                <li key={index}>{item}</li>
-
-                            ))}
-
-                        </ul>
-
-                    </div>
-
-                )}
+                <h2>
+                    Recommendation not found
+                </h2>
 
             </div>
 
+        );
+
+    }
+
+
+
+
+
+
+    const generateAdvice = async () => {
+
+
+        setLoading(true);
+
+
+        try {
+
+
+            const response = await getCareerAdvice({
+
+                matchedSkills:
+                    state.matchedSkills || [],
+
+
+                missingSkills:
+                    state.missingSkills || []
+
+            });
+
+
+
+            setAdvice(response);
+
+
+
+        }
+        catch(error){
+
+
+            console.error(
+                "AI generation failed",
+                error
+            );
+
+
+        }
+        finally{
+
+
+            setLoading(false);
+
+
+        }
+
+
+    };
+
+
+
+
+
+
+    return (
+
+
+        <div className="details-page">
+
+
+            <div className="details-card">
+
+
+
+
+
+                {/* Job Header */}
+
+
+                <div className="job-header">
+
+
+                    <h1>
+
+                        {state.jobTitle}
+
+                    </h1>
+
+
+
+                    <span className="company-badge">
+
+                        {state.company}
+
+                    </span>
+
+
+                </div>
+
+
+
+
+
+
+
+
+                {/* Job Information */}
+
+
+
+                <div className="job-info">
+
+
+
+                    <div className="info-box">
+
+                        <h4>
+                            Location
+                        </h4>
+
+
+                        <p>
+                            {job?.location || "Not Available"}
+                        </p>
+
+
+                    </div>
+
+
+
+
+
+                    <div className="info-box">
+
+                        <h4>
+                            Experience
+                        </h4>
+
+
+                        <p>
+
+                            {job?.experience || 0} Years
+
+                        </p>
+
+
+                    </div>
+
+
+
+
+
+
+                    <div className="info-box">
+
+
+                        <h4>
+                            Salary
+                        </h4>
+
+
+                        <p>
+
+                            ₹{job?.salary || 0} LPA
+
+                        </p>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                {/* Description */}
+
+
+
+                <div className="job-section">
+
+
+                    <h2>
+                        Job Description
+                    </h2>
+
+
+
+                    <p>
+
+                        {job?.description ||
+                        "No description available"}
+
+                    </p>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                {/* Match Score */}
+
+
+
+                <div className="job-section">
+
+
+                    <h2>
+                        Match Score
+                    </h2>
+
+
+
+                    <div className="details-score">
+
+
+                        <span>
+                            Your Match
+                        </span>
+
+
+                        <h1>
+
+                            {state.matchPercentage}%
+
+                        </h1>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                {/* Skills */}
+
+
+
+                <div className="job-section">
+
+
+
+                    <h2>
+                        Matched Skills
+                    </h2>
+
+
+
+                    {
+
+                        state.matchedSkills?.length > 0 ?
+
+
+                        state.matchedSkills.map(
+                            (skill,index)=>(
+
+
+                                <span
+
+                                    key={index}
+
+                                    className="details-skill"
+
+                                >
+
+                                    ✅ {skill}
+
+                                </span>
+
+
+                            )
+
+                        )
+
+                        :
+
+                        <p>
+                            No matched skills
+                        </p>
+
+                    }
+
+
+
+
+
+
+
+
+                    <h2 style={{marginTop:"25px"}}>
+
+                        Missing Skills
+
+                    </h2>
+
+
+
+
+
+
+                    {
+
+                        state.missingSkills?.length > 0 ?
+
+
+                        state.missingSkills.map(
+                            (skill,index)=>(
+
+
+                                <span
+
+                                    key={index}
+
+                                    className="details-skill missing"
+
+                                >
+
+                                    ❌ {skill}
+
+                                </span>
+
+
+                            )
+
+                        )
+
+
+                        :
+
+                        <p>
+                            No missing skills 🎉
+                        </p>
+
+
+                    }
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                {/* AI Button */}
+
+
+
+
+                <button
+
+
+                    className="btn-primary ai-btn"
+
+
+                    onClick={generateAdvice}
+
+
+                    disabled={loading}
+
+
+                >
+
+
+                    {
+
+
+                        loading
+
+                        ?
+
+                        "Generating AI Advice..."
+
+                        :
+
+                        "🤖 Get AI Career Guidance"
+
+
+                    }
+
+
+
+                </button>
+
+
+
+
+
+
+
+
+
+                {/* AI Result */}
+
+
+
+
+                {
+
+
+                    advice &&
+
+
+
+                    <div className="ai-section">
+
+
+
+
+
+                        <h2>
+
+                            🤖 AI Career Guidance
+
+                        </h2>
+
+
+
+
+
+
+
+
+
+                        <div className="ai-card">
+
+
+                            <h3>
+                                Career Summary
+                            </h3>
+
+
+
+                            <p>
+
+                                {advice.careerSummary}
+
+                            </p>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div className="ai-card">
+
+
+                            <h3>
+
+                                Learning Roadmap
+
+                            </h3>
+
+
+
+                            <ul>
+
+
+                                {
+
+                                    advice.learningRoadmap?.map(
+
+                                        (item,index)=>(
+
+
+                                            <li key={index}>
+
+                                                {item}
+
+                                            </li>
+
+
+                                        )
+
+                                    )
+
+
+                                }
+
+
+
+                            </ul>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div className="ai-card">
+
+
+                            <h3>
+
+                                Interview Preparation
+
+                            </h3>
+
+
+
+                            <ul>
+
+
+
+                                {
+
+                                    advice.interviewPreparation?.map(
+
+                                        (item,index)=>(
+
+
+                                            <li key={index}>
+
+                                                {item}
+
+                                            </li>
+
+
+                                        )
+
+                                    )
+
+
+                                }
+
+
+
+                            </ul>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div className="ai-card">
+
+
+                            <h3>
+
+                                Resume Improvements
+
+                            </h3>
+
+
+
+                            <ul>
+
+
+
+                                {
+
+                                    advice.resumeImprovements?.map(
+
+                                        (item,index)=>(
+
+
+                                            <li key={index}>
+
+                                                {item}
+
+                                            </li>
+
+
+                                        )
+
+                                    )
+
+
+                                }
+
+
+
+                            </ul>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                }
+
+
+
+
+
+
+            </div>
+
+
+
         </div>
 
+
     );
+
 }
+
 
 export default RecommendationDetails;

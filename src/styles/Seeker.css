@@ -1,0 +1,1721 @@
+/* ===========================
+   SEEKER DASHBOARD
+=========================== */
+
+
+.dashboard{
+
+    padding:30px;
+
+}
+
+
+.dashboard h1{
+
+    font-size:32px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+
+.dashboard-subtitle{
+
+    color:var(--text-light);
+
+    font-size:17px;
+
+    margin-bottom:35px;
+
+}
+
+
+/* ===========================
+   Dashboard Menu Cards
+=========================== */
+
+
+.dashboard-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,300px);
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+
+.dashboard-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    box-shadow:var(--shadow);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+.dashboard-card h2{
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+}
+
+
+.dashboard-card p{
+
+    color:var(--text-light);
+
+}
+
+
+
+/* ===========================
+   Dashboard Skills
+=========================== */
+
+
+.dashboard-skills-section{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    box-shadow:var(--shadow);
+
+    margin-top:40px;
+
+    max-width:900px;
+
+}
+
+
+.dashboard-skills-section h2{
+
+    margin-bottom:20px;
+
+}
+
+
+.resume-status{
+
+    color:var(--success);
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+
+.skill-count{
+
+    color:var(--text-light);
+
+    margin-bottom:25px;
+
+}
+
+
+.dashboard-skills-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+
+.skill-card{
+
+    background:#f8fafc;
+
+    border:1px solid var(--border);
+
+    padding:12px;
+
+    border-radius:8px;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+
+
+/* ===========================
+   Resume Upload
+=========================== */
+
+
+.resume-page{
+
+    min-height:70vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+
+
+.resume-upload-card{
+
+    width:500px;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:12px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+
+.resume-upload-card h1{
+
+    font-size:28px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.resume-upload-card p{
+
+    color:var(--text-light);
+
+    margin-bottom:25px;
+
+}
+
+
+
+
+.upload-box{
+
+    height:150px;
+
+    border:2px dashed var(--border);
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    margin-bottom:25px;
+
+    color:var(--text-light);
+
+}
+
+
+.upload-box:hover{
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+}
+
+
+.upload-box input[type="file"]{
+
+    display:none;
+
+}
+
+
+.resume-upload-card .btn-primary{
+
+    width:100%;
+
+}
+
+
+.message{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+
+
+/* ===========================
+   Recommendations Page
+=========================== */
+
+
+.recommendations-page{
+
+    padding:30px;
+
+}
+
+
+
+.page-header{
+
+    margin-bottom:30px;
+
+}
+
+
+
+.page-header h1{
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.page-header p{
+
+    color:var(--text-light);
+
+}
+
+
+
+
+
+/* Full width container */
+
+.recommendation-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    width:100%;
+
+}
+
+
+
+
+
+
+/* Compact Job Card */
+
+.recommendation-card{
+
+    background:white;
+
+    padding:20px 25px;
+
+    border-radius:12px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+
+    width:100%;
+
+    max-width:1100px;
+
+    transition:.3s;
+
+}
+
+
+
+.recommendation-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+
+
+
+
+.recommendation-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.recommendation-header h2{
+
+    font-size:22px;
+
+}
+
+
+
+
+
+.company-name{
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    padding:5px 15px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+
+/* Match Score */
+
+.match-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:#f0fdf4;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.match-box span{
+
+    color:var(--text-light);
+
+}
+
+
+
+.match-box strong{
+
+    font-size:24px;
+
+    color:var(--success);
+
+}
+
+
+
+
+
+
+/* Skills */
+
+.skills-result{
+
+    margin-bottom:10px;
+
+}
+
+
+
+.skills-result h4{
+
+    margin:10px 0 5px;
+
+    font-size:15px;
+
+}
+
+
+
+.skill-tag{
+
+    display:inline-block;
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    margin:3px;
+
+    font-size:13px;
+
+}
+
+
+
+.skill-tag.missing{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+
+
+
+/* Button */
+
+.recommendation-card .btn-primary{
+
+    width:150px;
+
+    padding:10px;
+
+    margin-top:10px;
+
+}
+
+
+
+
+
+/* Pagination */
+
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-top:35px;
+
+}
+
+
+
+/* ===========================
+   Job Details Page
+=========================== */
+
+
+.details-page{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:40px;
+
+}
+
+
+
+.details-card{
+
+    width:900px;
+
+}
+
+
+
+.job-header{
+
+    border-bottom:1px solid var(--border);
+
+    padding-bottom:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.job-header h1{
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.company-badge{
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    padding:8px 18px;
+
+    border-radius:20px;
+
+    font-weight:600;
+
+}
+
+
+
+.job-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.info-box{
+
+    background:#f8fafc;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+}
+
+
+
+.info-box h4{
+
+    color:var(--text-light);
+
+    margin-bottom:8px;
+
+}
+
+
+
+.info-box p{
+
+    font-weight:600;
+
+}
+
+
+
+.job-section{
+
+    margin-top:30px;
+
+    padding:25px;
+
+    background:#f8fafc;
+
+    border-radius:12px;
+
+}
+
+
+
+
+
+/* ===========================
+   AI Career Guidance
+=========================== */
+
+
+.ai-section{
+
+    margin-top:40px;
+
+    padding:30px;
+
+    background:#f8fafc;
+
+    border-radius:15px;
+
+    border:1px solid var(--border);
+
+}
+
+
+
+.ai-section > h2{
+
+    font-size:28px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+
+.ai-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    margin-bottom:25px;
+
+    box-shadow:var(--shadow);
+
+    border-left:5px solid var(--primary);
+
+}
+
+
+
+
+.ai-card h3{
+
+    font-size:21px;
+
+    margin-bottom:18px;
+
+    color:var(--primary);
+
+}
+
+
+
+
+
+.ai-card p{
+
+    line-height:1.8;
+
+    color:var(--text);
+
+    font-size:15px;
+
+}
+
+
+
+
+
+
+.ai-card ul{
+
+    padding-left:25px;
+
+}
+
+
+
+.ai-card li{
+
+    margin-bottom:15px;
+
+    line-height:1.7;
+
+    color:var(--text);
+
+}
+
+
+
+
+
+
+/* Different AI sections */
+
+
+.ai-card:nth-child(2){
+
+    border-left-color:#22c55e;
+
+}
+
+
+
+.ai-card:nth-child(3){
+
+    border-left-color:#f59e0b;
+
+}
+
+
+
+.ai-card:nth-child(4){
+
+    border-left-color:#8b5cf6;
+
+}
+
+
+
+/* ===========================
+   Profile
+=========================== */
+
+
+.profile-page{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+
+.profile-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+
+
+/* ===========================
+   Pagination
+=========================== */
+
+
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-top:40px;
+
+}
+
+
+
+/* ===========================
+   Responsive
+=========================== */
+
+
+@media(max-width:900px){
+
+
+    .recommendation-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+
+}
+
+
+@media(max-width:768px){
+
+
+    .dashboard{
+
+        padding:20px;
+
+    }
+
+
+    .dashboard-cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .dashboard-skills-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+
+    .recommendation-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .job-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .details-card{
+
+        width:100%;
+
+    }
+
+
+    .resume-upload-card{
+
+        width:100%;
+
+    }
+
+
+}
+
+/* ===========================
+   Recommendation Details Page
+=========================== */
+
+
+.details-page{
+
+    display:flex;
+    justify-content:center;
+    padding:30px;
+
+}
+
+
+
+.details-card{
+
+    width:100%;
+    max-width:900px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:14px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+
+/* ===========================
+   Job Header
+=========================== */
+
+
+.job-header{
+
+    border-bottom:1px solid var(--border);
+
+    padding-bottom:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.job-header h1{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.company-badge{
+
+    display:inline-block;
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    padding:6px 16px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+/* ===========================
+   Job Information
+=========================== */
+
+
+.job-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.info-box{
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+}
+
+
+
+.info-box h4{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    margin-bottom:5px;
+
+}
+
+
+
+.info-box p{
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
+
+
+
+
+/* ===========================
+   Job Description Section
+=========================== */
+
+
+.job-section{
+
+    background:#f8fafc;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.job-section h2{
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+
+/* ===========================
+   Match Score
+=========================== */
+
+
+.details-score{
+
+    background:#f0fdf4;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+}
+
+
+
+.details-score span{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+
+
+.details-score h1{
+
+    margin-top:5px;
+
+    font-size:40px;
+
+    color:var(--success);
+
+}
+
+
+
+
+/* ===========================
+   Skills
+=========================== */
+
+
+.details-skill{
+
+
+    display:inline-block;
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    margin:4px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+
+
+.details-skill.missing{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+
+
+
+/* ===========================
+   AI Button
+=========================== */
+
+
+.ai-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:12px;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+/* ===========================
+   AI Career Guidance
+=========================== */
+
+
+.ai-section{
+
+
+    margin-top:25px;
+
+
+    background:#f8fafc;
+
+
+    padding:20px;
+
+
+    border-radius:12px;
+
+
+    border:1px solid var(--border);
+
+
+}
+
+
+
+.ai-section > h2{
+
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+.ai-card{
+
+
+    background:white;
+
+
+    padding:18px;
+
+
+    border-radius:10px;
+
+
+    margin-bottom:15px;
+
+
+    box-shadow:var(--shadow);
+
+
+}
+
+
+
+
+.ai-card h3{
+
+
+    font-size:18px;
+
+    color:var(--primary);
+
+    margin-bottom:12px;
+
+
+}
+
+
+
+
+.ai-card p{
+
+
+    font-size:14px;
+
+    line-height:1.6;
+
+
+}
+
+
+
+
+.ai-card ul{
+
+
+    padding-left:20px;
+
+
+}
+
+
+
+.ai-card li{
+
+
+    margin-bottom:8px;
+
+    line-height:1.5;
+
+
+}
+
+
+
+
+
+/* AI Card Different Colors */
+
+
+.ai-card:nth-child(2){
+
+    border-left:4px solid #22c55e;
+
+}
+
+
+
+.ai-card:nth-child(3){
+
+    border-left:4px solid #f59e0b;
+
+}
+
+
+
+.ai-card:nth-child(4){
+
+    border-left:4px solid #8b5cf6;
+
+}
+
+
+
+
+
+/* ===========================
+   Responsive
+=========================== */
+
+
+@media(max-width:768px){
+
+
+    .details-card{
+
+        padding:20px;
+
+    }
+
+
+    .job-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .job-header h1{
+
+        font-size:24px;
+
+    }
+
+
+}
+
+/* ===========================
+   Profile Page
+=========================== */
+
+
+.profile-page{
+
+    padding:40px;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+
+
+.profile-card{
+
+    width:600px;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:15px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+
+
+/* Header */
+
+
+.profile-top{
+
+    text-align:center;
+
+    padding-bottom:30px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+.profile-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:40px;
+
+    font-weight:700;
+
+    margin:auto;
+
+}
+
+
+
+.profile-top h1{
+
+    margin-top:15px;
+
+    font-size:28px;
+
+}
+
+
+
+.profile-role{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    padding:6px 18px;
+
+    border-radius:20px;
+
+    font-weight:600;
+
+}
+
+
+
+
+/* Information */
+
+
+.profile-info{
+
+    margin-top:30px;
+
+}
+
+
+
+.profile-info h2{
+
+    font-size:22px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.profile-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+.profile-item:last-child{
+
+    border-bottom:none;
+
+}
+
+
+
+.profile-label{
+
+    color:var(--text-light);
+
+    font-weight:500;
+
+}
+
+
+
+.profile-value{
+
+    font-weight:600;
+
+}
+
+
+
+
+.status-active{
+
+    color:#16a34a;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+    .profile-card{
+
+        width:100%;
+
+    }
+
+
+    .profile-item{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:8px;
+
+    }
+
+}
+
+.logout-btn{
+
+    background:#dc2626;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 22px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+
+}
+
+
+.logout-btn:hover{
+
+    background:#b91c1c;
+
+}
+
+/* ==========================
+   SEEKER NAVBAR
+========================== */
+
+
+.top-navbar{
+
+    height:70px;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 40px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.top-navbar h2{
+
+    font-size:26px;
+
+    color:var(--primary);
+
+}
+
+
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#334155;
+
+    font-weight:500;
+
+}
+
+
+
+.nav-links a:hover{
+
+    color:var(--primary);
+
+}
+
+
+
+.nav-links button{
+
+    background:#ef4444;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+
+
+.dashboard-content{
+
+    padding:40px;
+
+}
+
+
+.dashboard-content h1{
+
+    font-size:36px;
+
+}
+
+
+.dashboard-subtitle{
+
+    font-size:18px;
+
+    color:var(--text-light);
+
+    margin-bottom:40px;
+
+}

@@ -88,3 +88,53 @@
     outline:none;
     border-color:#2563eb;
 }
+
+.success-message {
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #e6f7e9;
+    color: #1e7e34;
+
+    border: 1px solid #b7e4c7;
+
+    padding: 12px 15px;
+
+    border-radius: 8px;
+
+    margin: 20px 0;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    font-weight: 500;
+
+}
+
+
+
+.error-message {
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #fde8e8;
+    color: #c82333;
+
+    border: 1px solid #f5c6cb;
+
+    padding: 12px 15px;
+
+    border-radius: 8px;
+
+    margin: 20px 0;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    font-weight: 500;
+
+}

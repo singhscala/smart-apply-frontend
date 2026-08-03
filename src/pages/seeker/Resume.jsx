@@ -1,72 +1,233 @@
 import { useState } from "react";
 import { uploadResume } from "../../services/resumeService";
-import "./Resume.css";
+import AlertMessage from "../../components/common/AlertMessage";
+
 
 function Resume() {
 
+
     const [file, setFile] = useState(null);
-    const [message, setMessage] = useState("");
+
+    const [alert, setAlert] = useState(null);
+
+
+
+
 
     const handleUpload = async (e) => {
 
+
         e.preventDefault();
 
+
+
+
         if (!file) {
-            setMessage("Please select a PDF.");
+
+
+            setAlert({
+
+                message:"Please select a PDF file.",
+
+                type:"error"
+
+            });
+
+
             return;
+
         }
 
+
+
+
+
+
         const formData = new FormData();
+
+
         formData.append("file", file);
+
+
+
+
+
 
         try {
 
+
             await uploadResume(formData);
 
-            setMessage("✅ Resume uploaded successfully.");
 
-        } catch (error) {
 
-            console.error(error);
-            setMessage("❌ Upload failed.");
+            setAlert({
+
+                message:"Resume uploaded successfully.",
+
+                type:"success"
+
+            });
+
+
 
         }
 
+
+        catch(error){
+
+
+            console.error(error);
+
+
+
+            setAlert({
+
+                message:"Upload failed.",
+
+                type:"error"
+
+            });
+
+
+
+        }
+
+
+
     };
 
-    return (
 
-        <div className="resume-page">
 
-            <div className="resume-upload-card">
 
-                <h2>Upload Resume</h2>
 
-                <form onSubmit={handleUpload}>
 
-                    <input
-                        type="file"
-                        accept=".pdf"
-                        onChange={(e) => setFile(e.target.files[0])}
-                    />
+return (
 
-                    <button type="submit">
-                        Upload Resume
-                    </button>
 
-                </form>
+<div className="resume-page">
 
-                {message && (
-                    <p className="message">
-                        {message}
-                    </p>
-                )}
 
-            </div>
+    <div className="resume-upload-card">
 
-        </div>
 
-    );
+
+        <h1>
+            Upload Resume
+        </h1>
+
+
+
+
+        <p>
+            Upload your resume to extract skills and get personalized job recommendations.
+        </p>
+
+
+
+
+
+        {/* Alert Message */}
+
+        <AlertMessage
+
+            message={alert?.message}
+
+            type={alert?.type}
+
+            onClose={()=>setAlert(null)}
+
+        />
+
+
+
+
+
+
+
+        <form onSubmit={handleUpload}>
+
+
+
+            <label className="upload-box">
+
+
+
+                {
+
+                    file ?
+
+                    <span>
+                        {file.name}
+                    </span>
+
+
+                    :
+
+
+                    <span>
+                        Choose PDF Resume
+                    </span>
+
+                }
+
+
+
+
+
+
+                <input
+
+                    type="file"
+
+                    accept=".pdf"
+
+                    onChange={(e)=>setFile(e.target.files[0])}
+
+                />
+
+
+
+            </label>
+
+
+
+
+
+
+            <button
+
+                type="submit"
+
+                className="btn-primary"
+
+            >
+
+                Upload Resume
+
+            </button>
+
+
+
+
+
+        </form>
+
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+);
+
+
 }
+
 
 export default Resume;

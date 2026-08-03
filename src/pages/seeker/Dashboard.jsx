@@ -1,73 +1,179 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getResumeAnalysis } from "../../services/resumeService";
-import "./Dashboard.css";
 
-function Dashboard() {
 
-    const [resume, setResume] = useState(null);
+function Dashboard(){
 
-    useEffect(() => {
+    const [resume,setResume] = useState(null);
+
+    const navigate = useNavigate();
+
+
+
+    useEffect(()=>{
+
         fetchResume();
-    }, []);
 
-    const fetchResume = async () => {
+    },[]);
 
-        try {
+
+
+    const fetchResume = async()=>{
+
+        try{
 
             const response = await getResumeAnalysis();
+
+            console.log("Resume Response:", response);
+
             setResume(response);
 
-        } catch (error) {
+        }
+        catch(error){
 
             console.error(error);
 
+            setResume(null);
+
         }
+
     };
 
-    return (
-        <div className="dashboard">
 
-            <h1>
-                Welcome {localStorage.getItem("fullName")} 👋
-            </h1>
 
-            <div className="resume-card">
+return (
 
-                <h2>Resume Status</h2>
+<div className="seeker-dashboard">
 
-                {resume ? (
 
-                    <>
-                        <p className="resume-status">
-                            ✅ Resume Uploaded
-                        </p>
+    <div className="dashboard-content">
 
-                        <h3>Skills Extracted</h3>
 
-                        <ul className="skills-list">
 
-                            {resume.extractedSkills.map((skill, index) => (
+        <h1>
+            Welcome {localStorage.getItem("fullName")} 👋
+        </h1>
 
-                                <li key={index}>
-                                    {skill}
-                                </li>
 
-                            ))}
 
-                        </ul>
+        <p className="dashboard-subtitle">
+            AI-Powered Job Matching System
+        </p>
 
-                    </>
 
-                ) : (
 
-                    <p>No resume uploaded.</p>
 
-                )}
 
-            </div>
+        <div className="dashboard-skills-section">
+
+
+            <h2>
+                Extracted Skills
+            </h2>
+
+
+
+            {
+                resume ?
+
+
+                <>
+
+
+                    <p className="resume-status">
+                        ✅ Resume Uploaded
+                    </p>
+
+
+
+
+                    <p className="skill-count">
+
+                        Skills Found:
+                        {" "}
+                        {resume.extractedSkills.length}
+
+                    </p>
+
+
+
+
+
+                    <div className="dashboard-skills-grid">
+
+
+                    {
+
+                        resume.extractedSkills.map(
+                            (skill,index)=>(
+
+                            <div
+                                className="skill-card"
+                                key={index}
+                            >
+
+                                {skill}
+
+                            </div>
+
+                        ))
+
+                    }
+
+
+                    </div>
+
+
+
+                </>
+
+
+
+                :
+
+
+                <>
+
+
+                    <p>
+                        ⚠️ Resume not uploaded
+                    </p>
+
+
+
+
+                    <button
+                        className="btn-primary upload-btn"
+                        onClick={()=>navigate("/resume")}
+                    >
+
+                        Upload Resume
+
+                    </button>
+
+
+                </>
+
+
+            }
+
+
 
         </div>
-    );
+
+
+
+    </div>
+
+
+
+</div>
+
+);
+
+
 }
+
 
 export default Dashboard;

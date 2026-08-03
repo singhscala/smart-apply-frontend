@@ -1,21 +1,11 @@
-import axios from "axios";
-
-const BASE_URL = "http://localhost:8080/api/user";
-
-const getAuthHeader = () => ({
-    Authorization: `Bearer ${localStorage.getItem("token")}`
-});
+import api from "./api";
 
 export const getProfile = async () => {
-    const response = await axios.get(`${BASE_URL}/profile`, {
-        headers: getAuthHeader()
-    });
+    const response = await api.get("/user/profile");
     return response.data;
 };
 
 export const getUserSkills = async () => {
-    const response = await axios.get(`${BASE_URL}/skills`, {
-        headers: getAuthHeader()
-    });
+    const response = await api.get("/user/skills");
     return response.data;
 };

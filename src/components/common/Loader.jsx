@@ -1,5 +1,19 @@
+import "./css/Loader.css";
+
 function Loader() {
-  return <p>Loading...</p>;
+
+    return (
+
+        <div className="loader-container">
+
+            <div className="loader"></div>
+
+            <p>Loading...</p>
+
+        </div>
+
+    );
+
 }
 
 export default Loader;
