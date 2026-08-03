@@ -1,16 +1,125 @@
-# React + Vite
+# Smart Match – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Smart Match is an AI-powered Resume Analysis and Job Recommendation System developed as a CDAC project.
 
-Currently, two official plugins are available:
+This repository contains the React frontend of the application, providing separate interfaces for Job Seekers and Recruiters.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React.js
+- Vite
+- React Router DOM
+- Axios
+- CSS
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+### Job Seeker
+
+- User Authentication
+- Dashboard
+- Resume Upload
+- View Extracted Skills
+- Job Recommendations
+- Match Percentage
+- Skill Gap Analysis
+- AI Career Guidance
+- Profile Management
+
+### Recruiter
+
+- Recruiter Dashboard
+- Create Job Posting
+- View Posted Jobs
+- Update Job
+- Delete Job
+- Recruiter Profile
+
+---
+
+## Project Structure
+
+```
+src
+│
+├── components
+├── layouts
+├── pages
+│   ├── seeker
+│   └── recruiter
+├── services
+├── css
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/singhscala/smart-apply-frontend.git
+```
+
+Move to the project directory
+
+```bash
+cd smart-apply-frontend
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+The application will run at
+
+```
+http://localhost:5173
+```
+
+---
+
+## Backend Repository
+
+The frontend communicates with the Smart Match Spring Boot backend.
+
+Backend Repository:
+
+https://github.com/shristirai/smart-apply
+
+---
+
+## Screens
+
+- Login
+- Register
+- Seeker Dashboard
+- Resume Upload
+- Recommendations
+- Recommendation Details
+- Recruiter Dashboard
+- Job Management
+- Recruiter Profile
+
+---
+
+## Authors
+
+- Prachi Singh
+- Shristi Rai
+
+---
