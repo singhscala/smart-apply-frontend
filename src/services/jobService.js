@@ -1,22 +1,26 @@
 import api from "./api";
 
-
-// Get all jobs
 export const getAllJobs = async () => {
-
-    const response = await api.get("/jobs");
-
-    return response.data;
-
+  const response = await api.get("/jobs");
+  return response.data;
 };
 
-
-
-// Get job by id
 export const getJobById = async (id) => {
+  const response = await api.get(`/jobs/${id}`);
+  return response.data;
+};
 
-    const response = await api.get(`/jobs/${id}`);
+export const getRecruiterJobs = async () => {
+  const response = await api.get("/jobs/my-jobs");
+  return response.data;
+};
 
-    return response.data;
+export const createJob = async (jobData) => {
+  const response = await api.post("/jobs", jobData);
+  return response.data;
+};
 
+export const updateJob = async (id, job) => {
+  const response = await api.put(`/jobs/${id}`, job);
+  return response.data;
 };

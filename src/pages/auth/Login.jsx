@@ -3,347 +3,142 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { loginUser } from "../../services/authService";
 
-
 function Login() {
+  const navigate = useNavigate();
 
+  const location = useLocation();
 
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
 
-    const location = useLocation();
+  const [password, setPassword] = useState("");
 
+  const [showMessage, setShowMessage] = useState(true);
 
+  const message = location.state?.message;
 
-    const [email, setEmail] = useState("");
+  const errorMessage = location.state?.error;
 
-    const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-    const [showMessage, setShowMessage] = useState(true);
+  useEffect(() => {
+    if (message || errorMessage) {
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 5000);
 
+      return () => clearTimeout(timer);
+    }
+  }, [message, errorMessage]);
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
+    setError("");
 
-    const message = location.state?.message;
+    if (!email.trim() && !password.trim()) {
+      setError("Email and password are required.");
+      return;
+    }
 
-    const errorMessage = location.state?.error;
+    if (!email.trim()) {
+      setError("Email is required.");
+      return;
+    }
 
+    if (!password.trim()) {
+      setError("Password is required.");
+      return;
+    }
 
+    console.log("Login button clicked");
 
+    try {
+      const response = await loginUser({
+        email,
 
+        password,
+      });
+      localStorage.setItem("token", response.token);
 
-    // Hide message after 3 seconds
+      localStorage.setItem("role", response.role);
 
-    useEffect(()=>{
+      localStorage.setItem("fullName", response.fullName);
 
+      localStorage.setItem("email", response.email);
 
-        if(message || errorMessage){
+      if (response.role === "SEEKER") {
+        navigate("/dashboard");
+      } else {
+        navigate("/recruiter/dashboard");
+      }
 
+      console.log(response);
+    } catch (error) {
+      console.error(error);
 
-            const timer = setTimeout(()=>{
+      setError(
+        error.response?.data?.message || "Unable to login. Please try again.",
+      );
+    }
+  };
 
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1>Smart Match</h1>
 
-                setShowMessage(false);
+        <p>AI Powered Resume Analysis & Job Recommendation</p>
 
+        {message && showMessage && (
+          <div className="success-message">✅ {message}</div>
+        )}
 
-            },3000);
+        {error && <div className="error-message">❌ {error}</div>}
 
-
-
-            return ()=>clearTimeout(timer);
-
-        }
-
-
-
-    },[message,errorMessage]);
-
-
-
-
-
-
-
-    const handleLogin = async (e) => {
-
-
-        e.preventDefault();
-
-
-
-        console.log("Login button clicked");
-
-
-
-        try {
-
-
-            const response = await loginUser({
-
-                email,
-
-                password,
-
-            });
-
-
-
-
-
-            localStorage.setItem(
-                "token",
-                response.token
-            );
-
-
-            localStorage.setItem(
-                "role",
-                response.role
-            );
-
-
-            localStorage.setItem(
-                "fullName",
-                response.fullName
-            );
-
-
-            localStorage.setItem(
-                "email",
-                response.email
-            );
-
-
-
-
-
-
-            if(response.role === "SEEKER"){
-
-
-                navigate("/dashboard");
-
-
-            }
-            else{
-
-
-                navigate("/recruiter/dashboard");
-
-
-            }
-
-
-
-            console.log(response);
-
-
-
-        }
-
-        catch(error){
-
-
-            console.error(error);
-
-
-
-            navigate("/",{
-
-
-                state:{
-
-
-                    error:"Invalid email or password"
-
-
-                }
-
-
-            });
-
-
-
-        }
-
-
-
-    };
-
-
-
-
-
-
-return (
-
-
-<div className="auth-container">
-
-
-    <div className="auth-card">
-
-
-
-        <h1>
-            Smart Match
-        </h1>
-
-
-
-        <p>
-            AI Powered Resume Analysis & Job Recommendation
-        </p>
-
-
-
-
-
-        {
-            message && showMessage && (
-
-                <div className="success-message">
-
-                    ✅ {message}
-
-                </div>
-
-            )
-        }
-
-
-
-
-
-        {
-            errorMessage && showMessage && (
-
-                <div className="error-message">
-
-                    ❌ {errorMessage}
-
-                </div>
-
-            )
-        }
-
-
-
-
-
-
+        {errorMessage && showMessage && (
+          <div className="error-message">❌ {errorMessage}</div>
+        )}
 
         <form onSubmit={handleLogin}>
+          <div className="input-group">
+            <label>Email</label>
 
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError("");
+              }}
+            />
+          </div>
 
-            <div className="input-group">
+          <div className="input-group">
+            <label>Password</label>
 
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError("");
+              }}
+            />
+          </div>
 
-                <label>
-                    Email
-                </label>
-
-
-
-                <input
-
-                    type="email"
-
-                    placeholder="Enter your email"
-
-                    value={email}
-
-                    onChange={(e)=>setEmail(e.target.value)}
-
-                />
-
-
-            </div>
-
-
-
-
-
-
-
-            <div className="input-group">
-
-
-                <label>
-                    Password
-                </label>
-
-
-
-                <input
-
-                    type="password"
-
-                    placeholder="Enter your password"
-
-                    value={password}
-
-                    onChange={(e)=>setPassword(e.target.value)}
-
-                />
-
-
-            </div>
-
-
-
-
-
-
-
-            <button
-                type="submit"
-                className="auth-btn"
-            >
-
-                Login
-
-            </button>
-
-
-
-
-
+          <button type="submit" className="auth-btn">
+            Login
+          </button>
         </form>
 
-
-
-
-
-
-
         <p className="bottom-text">
-
-
-            Don't have an account?{" "}
-
-
-            <Link to="/register">
-
-                Register
-
-            </Link>
-
-
+          Don't have an account? <Link to="/register">Register</Link>
         </p>
-
-
-
-
+      </div>
     </div>
-
-
-
-</div>
-
-
-);
-
-
+  );
 }
-
 
 export default Login;

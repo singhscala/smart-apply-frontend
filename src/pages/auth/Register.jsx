@@ -4,115 +4,102 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/authService";
 
 function Register() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("SEEKER");
 
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = useState("SEEKER");
+  const [error, setError] = useState("");
 
-    const handleRegister = async (e) => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
 
-        e.preventDefault();
+    setError("");
 
-        try {
+    try {
+      await registerUser({
+        fullName,
+        email,
+        password,
+        role,
+      });
 
-            await registerUser({
-                fullName,
-                email,
-                password,
-                role,
-            });
+      navigate("/", {
+        state: {
+          message: "Registration Successful!",
+        },
+      });
+    } catch (err) {
+      setError(err.response?.data?.message || "Registration Failed!");
+    }
+  };
 
-            navigate("/", {
-                state: {
-                    message: "Registration Successful!"
-                }
-            });
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1>Create Account</h1>
 
-        } catch (error) {
+        <p>Register to Smart Match</p>
 
-            console.error(error);
+        {error && <div className="error-message">❌ {error}</div>}
 
-            navigate("/register", {
-                state: {
-                    error: "Registration Failed!"
-                }
-            });
+        <form onSubmit={handleRegister}>
+          <div className="input-group">
+            <label>Full Name</label>
 
-        }
-    };
+            <input
+              type="text"
+              placeholder="Enter full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+          </div>
 
-    return (
-        <div className="auth-container">
-            <div className="auth-card">
+          <div className="input-group">
+            <label>Email</label>
 
-                <h1>Create Account</h1>
-                <p>Register to Smart Match</p>
+            <input
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-                <form onSubmit={handleRegister}>
+          <div className="input-group">
+            <label>Password</label>
 
-                    <div className="input-group">
-                        <label>Full Name</label>
-                        <input
-                            type="text"
-                            placeholder="Enter full name"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                        />
-                    </div>
+            <input
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-                    <div className="input-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            placeholder="Enter email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
+          <div className="input-group">
+            <label>Role</label>
 
-                    <div className="input-group">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            placeholder="Enter password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
+            <select value={role} onChange={(e) => setRole(e.target.value)}>
+              <option value="SEEKER">Job Seeker</option>
 
-                    <div className="input-group">
-                        <label>Role</label>
+              <option value="RECRUITER">Recruiter</option>
+            </select>
+          </div>
 
-                        <select
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                        >
-                            <option value="SEEKER">Job Seeker</option>
-                            <option value="RECRUITER">Recruiter</option>
-                        </select>
+          <button type="submit" className="auth-btn">
+            Register
+          </button>
+        </form>
 
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="auth-btn"
-                    >
-                        Register
-                    </button>
-
-                </form>
-
-                <p className="bottom-text">
-                    Already have an account?{" "}
-                    <Link to="/">Login</Link>
-                </p>
-
-            </div>
-        </div>
-    );
+        <p className="bottom-text">
+          Already have an account? <Link to="/">Login</Link>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default Register;

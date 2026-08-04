@@ -1,54 +1,25 @@
 import { useEffect } from "react";
 
+function AlertMessage({ message, type, onClose }) {
+  useEffect(() => {
+    if (!message) return;
 
-function AlertMessage({message, type, onClose}) {
+    const timer = setTimeout(() => {
+      onClose();
+    }, 3000);
 
+    return () => clearTimeout(timer);
+  }, [message, onClose]);
 
-    useEffect(()=>{
+  if (!message) {
+    return null;
+  }
 
-
-        const timer = setTimeout(()=>{
-
-            onClose();
-
-        },3000);
-
-
-
-        return ()=>clearTimeout(timer);
-
-
-    },[onClose]);
-
-
-
-
-    if(!message){
-        return null;
-    }
-
-
-
-    return (
-
-        <div className={type === "success" 
-            ? "success-message" 
-            : "error-message"}>
-
-
-            {type === "success" ? "✅" : "❌"}
-
-            {" "}
-
-            {message}
-
-
-        </div>
-
-    );
-
-
+  return (
+    <div className={type === "success" ? "success-message" : "error-message"}>
+      {type === "success" ? "✅" : "❌"} {message}
+    </div>
+  );
 }
-
 
 export default AlertMessage;

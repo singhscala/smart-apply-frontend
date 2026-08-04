@@ -633,3 +633,95 @@
 
   font-weight: 600;
 }
+
+/* ===========================
+   Delete Job Page
+=========================== */
+
+.delete-page {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  min-height: calc(100vh - 60px);
+
+  padding: 40px;
+}
+
+.delete-card {
+  width: 100%;
+  max-width: 500px;
+
+  background: #fff;
+
+  padding: 40px;
+
+  border-radius: 12px;
+
+  box-shadow: var(--shadow);
+
+  text-align: center;
+
+  border: 1px solid var(--border);
+}
+
+.delete-icon {
+  font-size: 55px;
+
+  margin-bottom: 20px;
+}
+
+.delete-card h1 {
+  font-size: 30px;
+
+  margin-bottom: 15px;
+}
+
+.delete-card p {
+  color: var(--text-light);
+
+  font-size: 16px;
+
+  line-height: 1.6;
+
+  margin-bottom: 10px;
+}
+
+.delete-warning {
+  color: #dc2626;
+
+  font-weight: 600;
+
+  margin-top: 15px;
+}
+
+.delete-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-top: 35px;
+}
+
+.delete-buttons .btn-secondary,
+.delete-buttons .btn-danger {
+  min-width: 140px;
+
+  padding: 12px 18px;
+}
+
+.delete-buttons .btn-danger {
+  background: #dc2626;
+
+  color: white;
+
+  border: none;
+}
+
+.delete-buttons .btn-danger:hover {
+  background: #b91c1c;
+}

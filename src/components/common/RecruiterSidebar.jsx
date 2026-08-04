@@ -1,76 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../services/authService";
 
+function RecruiterSidebar() {
+  const navigate = useNavigate();
 
-function RecruiterSidebar(){
+  const handleLogout = () => {
+    logout();
 
-    const navigate = useNavigate();
+    navigate("/");
+  };
 
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-logo">
+        <h2>Smart Match</h2>
 
-    const handleLogout = () => {
+        <p>Recruiter Panel</p>
+      </div>
 
-        logout();
+      <div className="sidebar-menu">
+        <Link to="/recruiter/dashboard">Dashboard</Link>
 
-        navigate("/");
+        <Link to="/recruiter/jobs">My Jobs</Link>
 
-    };
+        <Link to="/recruiter/jobs/create">Post a Job</Link>
 
+        <Link to="/recruiter/profile">Profile</Link>
+      </div>
 
-    return (
-
-        <aside className="sidebar">
-
-
-            <div className="sidebar-logo">
-
-                <h2>Smart Match</h2>
-
-                <p>Recruiter Panel</p>
-
-            </div>
-
-
-
-            <div className="sidebar-menu">
-
-
-                <Link to="/recruiter/dashboard">
-                    Dashboard
-                </Link>
-
-
-                <Link to="/recruiter/jobs">
-                    My Jobs
-                </Link>
-
-
-                <Link to="/recruiter/jobs/create">
-                    Post a Job
-                </Link>
-
-
-                <Link to="/recruiter/profile">
-                    Profile
-                </Link>
-
-
-            </div>
-
-
-
-            <button
-                className="logout-btn"
-                onClick={handleLogout}
-            >
-                Logout
-            </button>
-
-
-        </aside>
-
-    );
-
+      <button className="logout-btn" onClick={handleLogout}>
+        Logout
+      </button>
+    </aside>
+  );
 }
-
 
 export default RecruiterSidebar;

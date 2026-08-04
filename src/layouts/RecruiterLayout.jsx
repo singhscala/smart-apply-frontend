@@ -4,27 +4,16 @@ import "../styles/recruiter.css";
 
 console.log("Recruiter CSS loaded");
 
+function RecruiterLayout() {
+  return (
+    <div className="recruiter-layout">
+      <RecruiterSidebar />
 
-function RecruiterLayout(){
-
-    return (
-
-        <div className="recruiter-layout">
-
-            <RecruiterSidebar />
-
-            <div className="main-content">
-
-                <Outlet />
-
-            </div>
-
-
-        </div>
-
-    );
-
+      <div className="main-content">
+        <Outlet />
+      </div>
+    </div>
+  );
 }
-
 
 export default RecruiterLayout;

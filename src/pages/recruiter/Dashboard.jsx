@@ -1,19 +1,28 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getRecruiterJobs } from "../../services/jobService";
 
 function RecruiterDashboard() {
   const [jobCount, setJobCount] = useState(0);
 
   const [recruiterName, setRecruiterName] = useState("");
 
-  useEffect(() => {
+  const fetchDashboard = async () => {
     const name = localStorage.getItem("fullName") || "Recruiter";
-
     setRecruiterName(name);
 
-    const jobs = JSON.parse(localStorage.getItem("myJobs") || "[]");
+    try {
+      const jobs = await getRecruiterJobs();
+      setJobCount(jobs.length);
+    } catch (error) {
+      console.error(error);
 
-    setJobCount(jobs.length);
+      setJobCount(0);
+    }
+  };
+
+  useEffect(() => {
+    fetchDashboard();
   }, []);
 
   return (
