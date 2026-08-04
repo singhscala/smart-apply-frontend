@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
+import { deleteJob } from "../../services/jobService";
 
 function DeleteJob() {
   const { id } = useParams();
@@ -15,13 +15,7 @@ function DeleteJob() {
     setLoading(true);
 
     try {
-      const token = localStorage.getItem("token");
-
-      await axios.delete(`http://localhost:8080/api/jobs/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await deleteJob(id);
 
       navigate("/recruiter/jobs");
     } catch (error) {

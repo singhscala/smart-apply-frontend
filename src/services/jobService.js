@@ -24,3 +24,8 @@ export const updateJob = async (id, job) => {
   const response = await api.put(`/jobs/${id}`, job);
   return response.data;
 };
+
+export const deleteJob = async (id) => {
+  const response = await api.delete(`/jobs/${id}`);
+  return response.data;
+};

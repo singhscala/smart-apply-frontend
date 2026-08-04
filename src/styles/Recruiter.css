@@ -725,3 +725,11 @@
 .delete-buttons .btn-danger:hover {
   background: #b91c1c;
 }
+
+.form-hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #6b7280;
+  font-style: italic;
+}
