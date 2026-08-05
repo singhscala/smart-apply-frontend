@@ -9,16 +9,20 @@ function Profile() {
     role: "",
   });
 
+  const [error, setError] = useState("");
+
   useEffect(() => {
     fetchProfile();
   }, []);
 
-  const fetchProfile = async () => {
+  async function fetchProfile() {
     try {
-      const response = await getProfile();
-      setProfile(response);
+      const data = await getProfile();
+      setProfile(data);
     } catch (error) {
       console.error(error);
+
+      setError("Failed to load profile.");
 
       setProfile({
         fullName: localStorage.getItem("fullName") || "",
@@ -26,17 +30,23 @@ function Profile() {
         role: localStorage.getItem("role") || "SEEKER",
       });
     }
-  };
+  }
 
   return (
     <div className="profile-page">
+      {error && <AlertMessage type="error" message={error} />}
+
       <div className="profile-card">
         <div className="profile-top">
-          <div className="profile-avatar">P</div>
+          <div className="profile-avatar">
+            {profile.fullName ? profile.fullName.charAt(0).toUpperCase() : "S"}
+          </div>
 
-          <h1>Prachi Singh</h1>
+          <h1>{profile.fullName}</h1>
 
-          <span className="profile-role">Job Seeker</span>
+          <span className="profile-role">
+            {profile.role === "SEEKER" ? "Job Seeker" : profile.role}
+          </span>
         </div>
 
         <div className="profile-info">
@@ -44,25 +54,23 @@ function Profile() {
 
           <div className="profile-item">
             <span className="profile-label">Full Name</span>
-
-            <span className="profile-value">Prachi Singh</span>
+            <span className="profile-value">{profile.fullName}</span>
           </div>
 
           <div className="profile-item">
             <span className="profile-label">Email</span>
-
-            <span className="profile-value">prachi@gmail.com</span>
+            <span className="profile-value">{profile.email}</span>
           </div>
 
           <div className="profile-item">
             <span className="profile-label">Role</span>
-
-            <span className="profile-value">Job Seeker</span>
+            <span className="profile-value">
+              {profile.role === "SEEKER" ? "Job Seeker" : profile.role}
+            </span>
           </div>
 
           <div className="profile-item">
             <span className="profile-label">Account Status</span>
-
             <span className="status-active">🟢 Active</span>
           </div>
         </div>

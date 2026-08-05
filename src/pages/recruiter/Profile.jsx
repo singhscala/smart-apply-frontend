@@ -47,7 +47,7 @@ function RecruiterProfile() {
 
             <h2>{profile.fullName}</h2>
 
-            <p>Recruiter</p>
+            <p>{profile.role}</p>
           </div>
 
           <div className="profile-details">
@@ -66,7 +66,7 @@ function RecruiterProfile() {
             <div className="profile-field">
               <label>Role</label>
 
-              <span>Recruiter</span>
+              <span>{profile.role}</span>
             </div>
 
             <div className="profile-field">
